@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body{
+        background-color: lightblue;
+    }
+
+    .box1{
+        width: 400px;
+        height: 320px;
+        background-color: rgb(99, 134, 163);
+        border-radius: 10px;
+        border-width: 5px;
+        border-color: black;
+        border-style: solid;
+    }
+    .container{
+        width: 1000px;
+        height: 800px;
+        border-radius: 10px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        border-style: dashed;
+    }
+    .halfbox1{
+        width: 400px;
+        height: 700px;
+        border-width: 2px;
+    }
+    .halfbox2{
+        width: 500px;
+        height: 800px;
+        border-width: 2px;
+        background-color: rgb(65, 78, 196);
+    }
+
+    </style>
+</head>
+<body>
+<div class ="container">
+<div class="halfbox2">
+<form onsubmit="return confirmSubmit()" onreset="return confirmReset()">
+    <div class="box1">  
+    <label for= "id">Student ID:</label><br>
+    <input type="number" name="id" id="id" required><br>
+    <label for= "name">Full name:</label><br>
+    <input type="text" id="name" name="name" placeholder="FirstName, M.I. LastName" required><br>
+    <label for= "bday">Birthdate:</label><br>
+    <input type="date" id="bday" name="bday" value="bday" required><br>
+    <label for= "mail">Email:</label><br>
+    <input type="email" id="mail" name="mail" placeholder="johndoe@gmail.com" required><br>
+    <label for= "phonenum">Phone Number:</label><br>
+    <input type="text" id="phonenum" name="phonenum" placeholder="xxx-xxx-xxxx" required><br>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="box1">
+    <label for= "gLevel">Grade Level:</label><br>
+    <select id="gLevel" name="gLevel">
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select><br>
+
+    <fieldset>
+        <legend>Intern or Extern?</legend><br>
+        <input type="radio" id="Intern" name="ResStatus" value="Intern" required>
+        <label for="Intern">Intern</label><br>
+        <input type="radio"  id="Extern" name="ResStatus" value="Extern">
+        <label for="Extern">Extern</label><br>
+    </fieldset>
+    <label for= "clubpref">Preferred Organization:</label><br>
+    <select id="clubpref" name="clubpref">
+        <option value="none">Select</option>
+        <option value="genchem">General Chemistry Division</option>
+        <option value="orgchem">Organic Chemistry Department</option>
+        <option value="inorgchem">Inorganic Chemistry Department</option>
+        <option value="physchem">Physical Chemistry Group</option>
+        <option value="analytchem">Analytical Chemistry Group</option>
+        <option value="biochem">Biochemistry Satellite Department</option>
+    </select><br>
+    <label for= "reason">Why do you want to join this group?</label><br>
+    <textarea name="reason" rows="5" cols="50" required></textarea><br>
+    </div>
+
+    <br>
+    <br>
+
+    <input type="submit">
+    <input type="reset">
+</form>
+</div>
+<div class="halfbox1">
+    <img src="/CHIMOARG.png" alt="Chemistry Logo" width="400" height="400">
+    <h2>Chimoarg Application Form</h2>
+</div>
+</div>
+</body>
+</html>
+<script>
+function confirmSubmit() {
+    return confirm("Are you sure you want to submit this form?");
+}
+
+function confirmReset() {
+    return confirm("This will clear all fields. Continue?");
+}
+</script>
