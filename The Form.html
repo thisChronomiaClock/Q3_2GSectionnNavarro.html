@@ -35,13 +35,20 @@
         border-width: 2px;
         background-color: rgb(65, 78, 196);
     }
+    button{
+        background-color: rgb(99, 134, 163);
+        border-radius: 10px;
+        border-width: 5px;
+        border-color: black;
+        border-style: solid;
+    }
 
     </style>
 </head>
 <body>
 <div class ="container">
 <div class="halfbox2">
-<form onsubmit="return confirmSubmit()" onreset="return confirmReset()">
+<form id="Signups" onsubmit="return confirmSubmit()" onreset="return confirmReset()">
     <div class="box1">  
     <label for= "id">Student ID:</label><br>
     <input type="number" name="id" id="id" required><br>
@@ -79,12 +86,12 @@
     <label for= "clubpref">Preferred Organization:</label><br>
     <select id="clubpref" name="clubpref">
         <option value="none">Select</option>
-        <option value="genchem">General Chemistry Division</option>
-        <option value="orgchem">Organic Chemistry Department</option>
-        <option value="inorgchem">Inorganic Chemistry Department</option>
-        <option value="physchem">Physical Chemistry Group</option>
-        <option value="analytchem">Analytical Chemistry Group</option>
-        <option value="biochem">Biochemistry Satellite Department</option>
+        <option value="General Chemistry">General Chemistry Division</option>
+        <option value="Organic Chemistry">Organic Chemistry Department</option>
+        <option value="Inorganic Chemistry">Inorganic Chemistry Department</option>
+        <option value="Physical Chemistry">Physical Chemistry Group</option>
+        <option value="Analytic Chemistry">Analytical Chemistry Group</option>
+        <option value="Biochemistry">Biochemistry Satellite Department</option>
     </select><br>
     <label for= "reason">Why do you want to join this group?</label><br>
     <textarea name="reason" rows="5" cols="50" required></textarea><br>
@@ -95,7 +102,11 @@
 
     <input type="submit">
     <input type="reset">
+    <a href = "viewSignUps.html" onclick="loadInfo()">View Signups</a>
+    
+
 </form>
+    
 </div>
 <div class="halfbox1">
     <img src="/CHIMOARG.png" alt="Chemistry Logo" width="400" height="400">
@@ -112,4 +123,28 @@ function confirmSubmit() {
 function confirmReset() {
     return confirm("This will clear all fields. Continue?");
 }
+</script>
+<script>
+    document.getElementById("Signups").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const signup = {
+            id: document.getElementById("id").value,
+            name: document.getElementById("name").value,
+            mail: document.getElementById("mail").value,
+            phonenum: document.getElementById("phonenum").value,
+            gLevel: document.getElementById("gLevel").value,
+            ResStatus: document.querySelector('input[name="ResStatus"]:checked').value,
+            clubpref: document.getElementById("clubpref").value
+        };
+
+        let signups = JSON.parse(localStorage.getItem("signups")) || [];
+        signups.push(signup);
+
+        localStorage.setItem("signups", JSON.stringify(signups));
+
+        alert("Data transmitted.")
+
+        
+    });
 </script>

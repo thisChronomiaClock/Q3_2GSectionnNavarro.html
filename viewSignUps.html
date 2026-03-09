@@ -1,0 +1,43 @@
+<body>
+    <h1>View Sign Ups</h1>
+    <br>
+    <h2>Filter Club: </h2>
+    <
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Club</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Grade</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Intern/Extern</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    
+</body>
+<script>
+    const signups = JSON.parse(localStorage.getItem("signups")) || [];
+
+    const tableBody = document.getElementById("tableBody");
+
+   signups.forEach(person => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${person.clubpref}</td>
+                <td>${person.id}</td>
+                <td>${person.name}</td>
+                <td>${person.gLevel}</td>
+                <td>${person.mail}</td>
+                <td>${person.phonenum}</td>
+                <td>${person.ResStatus}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    
+        
+
+</script>
