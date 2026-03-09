@@ -1,9 +1,17 @@
 <body>
     <h1>View Sign Ups</h1>
     <br>
-    <h2>Filter Club: </h2>
-    <
-    <table border="1">
+    <label>Search by Club:</label>
+    <select id = "filter" onchange="loadTable()">
+        <option value="all">All</option>
+        <option value="General Chemistry">General Chem</option>
+        <option value="Organic Chemistry">Organic Chem</option>
+        <option value="Inorganic Chemistry">Inorganic Chem</option>
+        <option value="Physical Chemistry">Physical Chem</option>
+        <option value="Analytic Chemistry">Analytical Chem</option>
+        <option value="Biochemistry">Biochem</option>
+    </select>
+    <table id="table" border = 2>
         <thead>
         <tr>
             <th>Club</th>
@@ -15,29 +23,47 @@
             <th>Intern/Extern</th>
         </tr>
         </thead>
-        <tbody id="tableBody"></tbody>
+        <tbody id="tableBody">
+
+        </tbody>
     </table>
+
+<button onclick="clearAll()">Clear All</button>
     
 </body>
 <script>
+function clearAll(){
+    localStorage.removeItem("signups")
+    loadTable();
+}
+function loadTable(){
     const signups = JSON.parse(localStorage.getItem("signups")) || [];
-
+    const filter = document.getElementById("filter").value;
     const tableBody = document.getElementById("tableBody");
 
+    tableBody.innerHTML = " ";
+
    signups.forEach(person => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${person.clubpref}</td>
-                <td>${person.id}</td>
-                <td>${person.name}</td>
-                <td>${person.gLevel}</td>
-                <td>${person.mail}</td>
-                <td>${person.phonenum}</td>
-                <td>${person.ResStatus}</td>
-            `;
-            tableBody.appendChild(row);
-        });
+
+    if(filter !== "all" && person.clubpref !== filter){
+        return;
+    }
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td>${person.clubpref}</td>
+        <td>${person.id}</td>
+        <td>${person.name}</td>
+        <td>${person.gLevel}</td>
+        <td>${person.mail}</td>
+        <td>${person.phonenum}</td>
+        <td>${person.ResStatus}</td>
+        `;
+        tableBody.appendChild(row);
+    });
     
-        
+    
+}
+
+loadTable();
 
 </script>

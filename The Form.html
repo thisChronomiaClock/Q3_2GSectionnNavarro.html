@@ -84,8 +84,8 @@
         <label for="Extern">Extern</label><br>
     </fieldset>
     <label for= "clubpref">Preferred Organization:</label><br>
-    <select id="clubpref" name="clubpref">
-        <option value="none">Select</option>
+    <select id="clubpref" name="clubpref" required>
+        <option value=" ">Select</option>
         <option value="General Chemistry">General Chemistry Division</option>
         <option value="Organic Chemistry">Organic Chemistry Department</option>
         <option value="Inorganic Chemistry">Inorganic Chemistry Department</option>
@@ -125,6 +125,7 @@ function confirmReset() {
 }
 </script>
 <script>
+
     document.getElementById("Signups").addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent form submission
 
@@ -143,7 +144,8 @@ function confirmReset() {
 
         localStorage.setItem("signups", JSON.stringify(signups));
 
-        alert("Data transmitted.")
+        alert("Data transmitted.");
+        
 
         
     });
